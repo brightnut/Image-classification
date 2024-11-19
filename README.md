@@ -63,7 +63,7 @@ Validation: 20% of the training data is used as validation during training.
 Evaluation: Accuracy scores for the training and test sets are calculated and printed.
 Results
 Random Forest and Decision Tree classifiers achieved high accuracy scores on the test data.
-Training accuracy is near 1.0, and test accuracy is approximately 0.97, demonstrating effective generalization on unseen data.
+Training accuracy is near 1.0, and test accuracy is approximately 0.84, demonstrating effective generalization on unseen data.
 Future Improvements
 Experiment with fine-tuning pretrained layers in VGG16 and VGG19 for improved performance.
 Explore alternative evaluation metrics (e.g., precision, recall, F1-score) to handle potential class imbalances.
