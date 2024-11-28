@@ -35,33 +35,7 @@ Dense layer with 32 units, softmax activation.
 Output layer with 2 units, sigmoid activation for binary classification.
 Optimizer and Loss Function
 Optimizer: Adam
-Loss Function: Mean Squared Error (though binary crossentropy is recommended).
-Installation
-Clone the repository:
-
-bash
-Copy code
-git clone https://github.com/your-username/Cancer_Cell_Classification.git
-cd Cancer_Cell_Classification
-Install the required dependencies:
-
-bash
-Copy code
-pip install -r requirements.txt
-Usage
-Mount Google Drive to access the dataset:
-
-python
-Copy code
-from google.colab import drive
-drive.mount('/content/drive')
-Update dataset paths in the code:
-
-python
-Copy code
-trainpath = '/content/drive/My Drive/Cancer Cells/train'
-testpath = '/content/drive/My Drive/Cancer Cells/test'
-Run the notebook step by step to:
+Loss Function: Mean Squared Error.
 
 Preprocess the dataset.
 Train and evaluate the models.
@@ -82,5 +56,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 Acknowledgments
 Pre-trained VGG models: Keras Applications
-Dataset: Your specific source (mention if it’s publicly available or proprietary).
+Dataset: 50 images.
 Deep learning framework: TensorFlow/Keras.
