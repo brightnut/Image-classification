@@ -1,73 +1,86 @@
-Skin Cancer Classification with CNN and Transfer Learning
-
-This project classifies skin cancer images as either benign or malignant using deep learning models, specifically VGG16 and VGG19, with transfer learning for feature extraction. Ensemble classifiers, Random Forest and Decision Tree, are then applied to the extracted features to enhance prediction accuracy.
-
-Table of Contents
+Cancer Cell Classification Using Transfer Learning
 Overview
-Dataset
-Installation
+This project implements a deep learning model to classify cancer cells as either benign or malignant using pre-trained VGG16 and VGG19 models with transfer learning. The model achieves high accuracy and demonstrates the potential of leveraging pre-trained models for medical image classification tasks.
+
+Key Features
+Utilizes VGG16 and VGG19 architectures with ImageNet pre-trained weights.
+Applies transfer learning for efficient training on a limited dataset.
+Processes high-resolution images (224x224) for optimal performance.
+Achieves best test accuracy with the frozen VGG16 model: 88.8%.
+Includes test accuracy for VGG19: 82.8%.
 Project Structure
-Model Architecture
-Training and Evaluation
-Results
-Future Improvements
-Acknowledgments
-Overview
-The main objective is to classify skin cancer images into two categories:
-
-Benign (non-cancerous)
-Malignant (cancerous)
-This model utilizes pretrained CNN architectures (VGG16 and VGG19) with frozen layers to leverage feature extraction capabilities. Final classification is performed with Random Forest and Decision Tree models.
-
+bash
+Copy code
+Cancer_Cell_Classification/
+│
+├── train/                   # Training dataset (benign/malignant folders)
+├── test/                    # Test dataset (benign/malignant folders)
+├── Cancer_Cell_Classification.ipynb  # Main notebook with code
+├── requirements.txt         # Required Python packages
+└── README.md                # Project documentation
 Dataset
-Images should be organized in the following folder structure:
+The dataset consists of images of cancer cells divided into two categories:
+
+Benign
+Malignant
+Each image is resized to 224x224 pixels for compatibility with VGG models.
+
+Model Description
+VGG16 and VGG19
+Both models are loaded without their top layers (include_top=False).
+Pre-trained weights from ImageNet are used.
+Additional custom layers for classification:
+Dense layer with 64 units, ReLU activation.
+Dense layer with 32 units, softmax activation.
+Output layer with 2 units, sigmoid activation for binary classification.
+Optimizer and Loss Function
+Optimizer: Adam
+Loss Function: Mean Squared Error (though binary crossentropy is recommended).
+Installation
+Clone the repository:
 
 bash
 Copy code
-Skin_Cancer/
-├── train/
-│   ├── benign/
-│   └── malignant/
-└── test/
-    ├── benign/
-    └── malignant/
-Train and Test Data: Place images in the train and test folders. Ensure images are organized by class.
-Installation
-To run this project, make sure you have the following libraries installed:
+git clone https://github.com/your-username/Cancer_Cell_Classification.git
+cd Cancer_Cell_Classification
+Install the required dependencies:
 
 bash
 Copy code
-pip install numpy pandas matplotlib opencv-python Pillow seaborn scikit-learn tensorflow keras
-Project Structure
-trainpath: Path to the training data folder.
-testpath: Path to the testing data folder.
-Key Files:
-main.py: Contains all code for data loading, preprocessing, model training, and evaluation.
-README.md: Project documentation.
-Model Architecture
-Data Loading and Preprocessing:
+pip install -r requirements.txt
+Usage
+Mount Google Drive to access the dataset:
 
-Images are loaded from directories, resized to 224x224 pixels, and labeled.
-Labels are encoded as 0 (benign) and 1 (malignant).
-Transfer Learning:
+python
+Copy code
+from google.colab import drive
+drive.mount('/content/drive')
+Update dataset paths in the code:
 
-VGG16 and VGG19 models pretrained on ImageNet are used as feature extractors.
-Feature extraction layers are frozen to retain pretrained weights.
-Additional Dense layers are added to allow binary classification.
-Feature-Based Classification:
+python
+Copy code
+trainpath = '/content/drive/My Drive/Cancer Cells/train'
+testpath = '/content/drive/My Drive/Cancer Cells/test'
+Run the notebook step by step to:
 
-Extracted features are fed to ensemble classifiers (Random Forest and Decision Tree) for final classification.
-Training and Evaluation
-Training: The models are trained with MSE loss and accuracy as metrics.
-Validation: 20% of the training data is used as validation during training.
-Evaluation: Accuracy scores for the training and test sets are calculated and printed.
-Results
-Random Forest and Decision Tree classifiers achieved high accuracy scores on the test data.
-Training accuracy is near 1.0, and test accuracy is approximately 0.84, demonstrating effective generalization on unseen data.
+Preprocess the dataset.
+Train and evaluate the models.
+Save the trained model.
+Performance
+Model	Test Accuracy
+VGG16	88%
+VGG19	84%
 Future Improvements
-Experiment with fine-tuning pretrained layers in VGG16 and VGG19 for improved performance.
-Explore alternative evaluation metrics (e.g., precision, recall, F1-score) to handle potential class imbalances.
-Test additional classifiers or ensemble methods to optimize the prediction accuracy further.
+Fine-tuning deeper layers of VGG16 and VGG19 for domain-specific learning.
+Incorporating data augmentation to improve generalization.
+Exploring other architectures like ResNet, Inception, or EfficientNet.
+Contributing
+Contributions are welcome! Feel free to fork this repository, make enhancements, and submit a pull request.
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
 Acknowledgments
-This project utilizes pretrained models from the Keras library, specifically VGG16 and VGG19 architectures.
-ImageNet dataset is used as the initial training dataset for transfer learning.
+Pre-trained VGG models: Keras Applications
+Dataset: Your specific source (mention if it’s publicly available or proprietary).
+Deep learning framework: TensorFlow/Keras.
